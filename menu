@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# Clear the console before starting
+  clear
+
+# location
+  export DIR=`readlink -f .`;
+
+  echo " u. unpack ramdisk-recovery"
+  echo " r. repack ramdisk-recovery"
+  echo " "
+  echo " z. restart script"
+  echo " x. exit script"
+# Read the letter the user gives
+  echo
+  read enterLetter
+
+# unpack
+  if [ "$enterLetter" == "u" ]
+    then
+    $DIR/scripts/unpack_ramdisk_img.sh
+
+# repack
+  elif [ "$enterLetter" == "r" ]
+    then
+    $DIR/scripts/repack_ramdisk2img.sh
+
+# Restart
+  elif [ "$enterLetter" == "z" ]
+    then
+    $DIR/menu
+
+# Exit
+  elif [ "$enterLetter" == "x" ]
+    then
+exit 0
+
+# Other choice
+  else
+echo "Invalid option"
+    $DIR/menu
+fi
